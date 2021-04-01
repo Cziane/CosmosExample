@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "CopyFromSQL2MongoCosmos",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -24,7 +24,157 @@
 						"writeBatchTimeout": "00:30:00",
 						"writeBehavior": "insert"
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"path": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['parents'][0]['familyName']"
+								},
+								"sink": {
+									"path": "parent.familyname"
+								}
+							},
+							{
+								"source": {
+									"path": "$['parents'][0]['givenName']"
+								},
+								"sink": {
+									"path": "parent.givenName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['children'][0]['familyName']"
+								},
+								"sink": {
+									"path": "children.familyName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['children'][0]['givenName']"
+								},
+								"sink": {
+									"path": "children.givenName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['children'][0]['gender']"
+								},
+								"sink": {
+									"path": "children.gender"
+								}
+							},
+							{
+								"source": {
+									"path": "$['children'][0]['grade']"
+								},
+								"sink": {
+									"path": "children.grade"
+								}
+							},
+							{
+								"source": {
+									"path": "$['children'][0]['pets'][0]['givenName']"
+								},
+								"sink": {
+									"path": "children.pet.givenName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['address']['state']"
+								},
+								"sink": {
+									"path": "address.state"
+								}
+							},
+							{
+								"source": {
+									"path": "$['address']['county']"
+								},
+								"sink": {
+									"path": "address.county"
+								}
+							},
+							{
+								"source": {
+									"path": "$['address']['city']"
+								},
+								"sink": {
+									"path": "address.city"
+								}
+							},
+							{
+								"source": {
+									"path": "$['creationDate']"
+								},
+								"sink": {
+									"path": "creationDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['isRegistered']"
+								},
+								"sink": {
+									"path": "isRegistred"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_rid']"
+								},
+								"sink": {
+									"path": "_rid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_self']"
+								},
+								"sink": {
+									"path": "_self"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_etag']"
+								},
+								"sink": {
+									"path": "_etag"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_attachments']"
+								},
+								"sink": {
+									"path": "_attachments"
+								}
+							},
+							{
+								"source": {
+									"path": "$['_ts']"
+								},
+								"sink": {
+									"path": "_ts"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
 				},
 				"inputs": [
 					{
